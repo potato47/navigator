@@ -1,0 +1,38 @@
+<p-sidebar [(visible)]="visibleSidebarTop" position="top" [baseZIndex]="1">
+  <span class="ui-float-label" style="text-align:center;margin-top:50px;">
+    <input #searchInput placeholder="Enter by Baidu,Alt+Enter by Google" type="text" size="30" pInputText baiduSug="2" style="width:600px;height:45px;font-size:30px;">
+  </span>
+</p-sidebar>
+<p-sidebar [(visible)]="visibleSidebarRight" styleClass="ui-sidebar-sm" position="right" [baseZIndex]="1">
+    <h1 style="font-weight:normal">Right Sidebar</h1>
+</p-sidebar>
+<p-sidebar [(visible)]="visibleSidebarLeft" styleClass="ui-sidebar-md" position="left" [baseZIndex]="1">
+    <h1 style="font-weight:normal">Left Sidebar</h1>
+</p-sidebar>
+<p-sidebar [(visible)]="visibleSidebarBottom" styleClass="ui-sidebar-lg" position="bottom" [baseZIndex]="1">
+    <h1 style="font-weight:normal">Bottom Sidebar</h1>
+</p-sidebar>
+<p-sidebar [(visible)]="visibleSidebarFull" [fullScreen]="true" [baseZIndex]="10000">
+    <h1 style="font-weight:normal">Full Screen Sidebar</h1>
+</p-sidebar>
+<!-- [style]="{'position':'absolute','height':'85%','width':'80%','left':'10%','top':'5%'}" -->
+<p-tabView>
+
+  <p-tabPanel [header]="tab.title" *ngFor="let tab of tabs;index as ti" [selected]="ti=='0'">
+    <!-- <p-scrollPanel [style]="{height: '100%'}"> -->
+    <!-- <img [src]="'http://www.google.com/s2/favicons?domain='+app.url.split('//')[1]"  [alt]="app.title" /> -->
+    <a [href]="app.url" target="blank" *ngFor="let app of tab.apps;index as i" style="display:inline-block">
+      <p-card [title]='app.name' [style]="{'background':getAppColor(i),'margin':'20px'}">
+        {{app.desc}}
+      </p-card> 
+    </a>
+    <!-- </p-scrollPanel> -->
+  </p-tabPanel>
+  <p-tabPanel header="" leftIcon="fa-gamepad" *ngIf="dataLoaded">
+    你没有看错，啥也没有
+  </p-tabPanel>
+  <p-tabPanel header="" leftIcon="fa-calculator" *ngIf="dataLoaded">
+    你没有看错，啥也没有
+  </p-tabPanel>
+
+</p-tabView>
